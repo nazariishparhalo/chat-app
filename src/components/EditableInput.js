@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { Alert, Icon, Input, InputGroup } from 'rsuite'
 
-const EbitableInput = ({initialValue, onSave, label = null, placeholder = "Write your value", emptyMsg="Input is empty", ...inputProps}) => {
+const EbitableInput = ({initialValue, onSave, label = null, placeholder = "Write your value", emptyMsg="Input is empty", wrapperClassName="", ...inputProps}) => {
 
     const [input, setInput] = useState(initialValue);
     const [isEditable, setIsEditable] = useState(false);
@@ -30,7 +30,7 @@ const EbitableInput = ({initialValue, onSave, label = null, placeholder = "Write
     };
 
     return (
-        <div>
+        <div className={wrapperClassName}>
             {label}
             <InputGroup>
                 <Input {...inputProps} disabled={!isEditable} placeholder={placeholder} value={input} onChange={onInputChange} />

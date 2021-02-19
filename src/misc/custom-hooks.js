@@ -34,7 +34,6 @@ export const useMediaQuery = query => {
 
       useEffect(() => {
         const userStatusRef = database.ref(`/status/${uid}`);
-        console.log('userStatusRef', userStatusRef)
         userStatusRef.on('value', (snap) => {
             if(snap) {
                 const data = snap.val();
