@@ -9,7 +9,7 @@ import ProfileAvatar from '../../ProfileAvatar'
 import IconBtnControl from './IconBtnControl';
 import ProfileInfoBtnModal from './ProfileInfoBtnModal';
 
-const MessageItem = ({message, handleAdmin, handleLike }) => {
+const MessageItem = ({message, handleAdmin, handleLike, handleDelete }) => {
 
     const {author, createdAt, text, likes, likeCount} = message;
 
@@ -37,6 +37,10 @@ const MessageItem = ({message, handleAdmin, handleLike }) => {
                 </ProfileInfoBtnModal>
                 <TimeAgo datetime={createdAt} className="font-normal text-black-45 ml-2"/>
                 <IconBtnControl {...(isLiked ? {color: 'red'} : {})} isVisible={canShowIcons} iconName="heart" tooltip="Like this message" onClick={() => {handleLike(message.id)}} badgeContent={likeCount} />
+                {
+                    isAuthor &&
+                    <IconBtnControl isVisible={canShowIcons} iconName="close" tooltip="Delete this message" onClick={() => {handleDelete(message.id)}} />
+                }
             </div>
             <div>
                 <span className="word-break-all">{text}</span>
