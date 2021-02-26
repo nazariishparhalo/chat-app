@@ -5,6 +5,7 @@ import firebase from 'firebase/app'
 import { useProfile } from '../../../context/profile.context'
 import { database } from '../../../misc/firebase'
 import AttachmentBtnModal from './AttachmentBtnModal'
+import AudioMsgBtn from './AudioMsgBtn'
 
 function assembelMessage(profile, chatId) {
     return {
@@ -71,6 +72,7 @@ const ChatBottom = () => {
     
     const afterUpload = useCallback(async (files) => {
         setIsLoading(true);
+        console.log('yes')
 
         const updates = {};
         files.forEach(file => {
@@ -102,6 +104,7 @@ const ChatBottom = () => {
         <div>
             <InputGroup>
                 <AttachmentBtnModal afterUpload={afterUpload} />
+                <AudioMsgBtn afterUpload={afterUpload} />
                 <Input placeholder ="Write a new message here..." value={input} onChange={onInputChange} onKeyDown={onKeyDown} />
                 <InputGroup.Button color="blue" appearance="primary" onClick={onSnedClick} disabled={isLoading}>
                     <Icon icon="send" />
