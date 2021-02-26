@@ -20,12 +20,13 @@ const AttachmentBtnModal = ({afterUpload }) => {
     };
 
     const onUpload = async () => {
+        setIsLoading(true);
         try {
 
             const uploadPromises = fileList.map(f => {
-                return storage.ref(`/chat/${chatId}`).child(Data.now() + f.name).put(f.blobFile), {cacheControl: `public, max-age=${3600*24*3}`};
+                return storage.ref(`/chat/${chatId}`).child(Date.now() + f.name).put(f.blobFile, {cacheControl: `public, max-age=${3600*24*3}`});
             })
-            
+             
             const uploadSnapshots = await Promise.all(uploadPromises);
 
             const shapePromises = uploadSnapshots.map(async snap => {
